@@ -1,0 +1,13 @@
+# Real gas station data
+data/private/
+
+# Local databases
+*.db
+*.sqlite
+*.sqlite3
+
+# Real PDF files
+*.pdf
+
+# Configuration files and secrets
+.env
