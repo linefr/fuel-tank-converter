@@ -21,7 +21,7 @@ for file in private_directory.iterdir():
                 if any(
                     item is not None and "cm" in item.lower()
                     for item in row
-                ):
+                ): 
                     number_begin_cm = index
                     length_cm_litres = len(row)
                     break
@@ -52,4 +52,3 @@ for file in private_directory.iterdir():
                     fuel_tanks[tank_name]["cm"].append(cm_value)
                     fuel_tanks[tank_name]["litres"].append(litres_value)
 
-print(fuel_tanks)
