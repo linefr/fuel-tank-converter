@@ -11,3 +11,6 @@ data/private/
 
 # Configuration files and secrets
 .env
+
+**/__pycache__/
+*.pyc
