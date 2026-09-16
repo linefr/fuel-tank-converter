@@ -4,23 +4,20 @@ A simple Python project that converts tank measurements from centimetres to litr
 
 ## Project Status
 
-🚧 Work in progress — Week 2
+🚧 Work in progress — Week 4
 
-Currently working on storing the DataFrame in a database.
+Currently learning Tkinter and building the graphical user interface.
 
-**Expected result:** A CSV file with centimetres and litres columns
-extracted using pdfplumber
-organized with pandas
-validated against the original PDF
+**Expected result:** A graphical application that:
 
+allows the user to select a tank
 
+accepts a measurement in centimetres
 
+converts centimetres to litres
 
-## Technologies
+displays validation messages
 
-- Python
-- pdfplumber
-- CSV
-- SQLite
-- Git
-- Pandas
+stores measurements in SQLite
+
+allows the user to view the measurement history
