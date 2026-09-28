@@ -1,14 +1,32 @@
 from tkinter import *
-from receives_cm import receive_cm
+from receives import receive_cm, receive_tank
 
 
-# Get centimeters
+# Get centimeters and selected tank
 def submit():
     cm = entry.get()
-    receive_cm(cm)
+    variable = tank_variable.get()
+    if cm.isdigit():
+        receive_cm(cm)
+        receive_tank(variable)
+
+        # Clear the error message
+        text.set("")
+        label.config(font=("Arial", 20))
+    else:
+        # Display an error message
+        text.set("ERROR")
+        label.config(font=("Arial", 100))
 
 
+tanks = ['15-15-30', '10-10-10-30']
 window = Tk()
+
+# Text label
+text = StringVar(value='')
+label = Label(textvariable=text)
+label.config(font=("Arial", 20))
+label.pack()
 
 # Convert button
 button = Button(window)
@@ -19,5 +37,19 @@ button.pack()
 entry = Entry(window)
 entry.config(font=("Arial", 50))
 entry.pack()
+
+# User input (tank selection)
+
+# Variable
+tank_variable = IntVar()
+
+for index in range(len(tanks)):
+    radiobutton = Radiobutton(
+        window,
+        text=tanks[index],
+        variable=tank_variable,
+        value=index
+    )
+    radiobutton.pack()
 
 window.mainloop()
