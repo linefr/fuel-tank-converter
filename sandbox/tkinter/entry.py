@@ -1,22 +1,23 @@
 from tkinter import *
-from receives import receive_cm, receive_tank
-
+from receives import receive_cm_tank
 
 # Get centimeters and selected tank
 def submit():
     cm = entry.get()
     variable = tank_variable.get()
     if cm.isdigit():
-        receive_cm(cm)
-        receive_tank(variable)
+        receive_cm_tank(cm, variable)
 
         # Clear the error message
         text.set("")
         label.config(font=("Arial", 20))
+                                         
     else:
         # Display an error message
         text.set("ERROR")
-        label.config(font=("Arial", 100))
+        label.config(font=("Arial", 100),
+                     fg='red' # Change color
+        )
 
 
 tanks = ['15-15-30', '10-10-10-30']
