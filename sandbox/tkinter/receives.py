@@ -1,7 +1,11 @@
 import sqlite3
 from pathlib import Path
 
+data = {
+    '15-15-30': {'cm': [], 'litres': []},
+    '10-10-10-30': {'cm': [], 'litres': []}
 
+}
 def execute_database(cm, tank_variable):
     """
     NOTE: I NEED TO HANDLE THE CASE WHERE CM IS NOT FOUND IN THE DATABASE
@@ -25,10 +29,13 @@ def execute_database(cm, tank_variable):
             f'SELECT litres FROM "{tank_variable}" WHERE cm = {cm}'
         )
         result = cur.fetchone()
-
-        # RESULT IN LITRES
         litres = result[0]
-        print(litres)
+        data[tank_variable]['cm'].append(cm)
+        data[tank_variable]['litres'].append(litres)
+        # RESULT IN LITRES
+        
+        print(data[tank_variable])
+        return data[tank_variable]
 
     con.close()
 
