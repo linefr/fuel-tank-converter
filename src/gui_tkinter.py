@@ -1,39 +1,75 @@
-# Learning how to use Tkinter
-
 import tkinter as tk
+from receives import receive_cm_tank
 
 
-# Main window
-root = tk.Tk()
-root.title("Convert from cm to litres")
+"""
+Use the 'tk' alias to make Tkinter classes and functions easier to identify
+and improve code readability.
+"""
+# Get centimeters and selected tank
+
+def submit():
+    cm = entry.get()
+    variable = tank_variable.get()
+    if cm.isdigit():
+        measurements = receive_cm_tank(cm, variable)
+
+        # Clear the error message
+        show_results(measurements)
+        label.config(font=("Arial", 20))
+                                         
+    else:
+        # Display an error message
+        text.set("ERROR")
+        label.config(font=("Arial", 80),
+                     fg='red' # Change color
+        )
+
+def show_results(measurements):
+   
+    result_window = tk.Toplevel(window)
+    for tank, cm_litres in measurements.items():
+                results = tk.Label(
+                    result_window,
+                    text=f'{tank}:{cm_litres['cm']} cm - {cm_litres['litres']}L'
+                )
+                results.pack()
+                
+    
 
 
-def show():
-    variable = entry.get()
+tanks = ['15-15-30', '10-10-10-30']
+window = tk.Tk()
+window.geometry("300x300")
 
-    variable_label = tk.Label(root, text=variable)
-    variable_label.pack()
+# Text label
+text = tk.StringVar(value='')
+label = tk.Label(textvariable=text)
+label.config(font=("Arial", 2))
+label.place(anchor='center',relx=0.5,rely=0.5)
 
+# Convert button
+button = tk.Button(window)
+button.config(text="Convert", command=submit)
+button.place(x=150,y=250,anchor=tk.CENTER)
 
-# Widget placed inside the root window
-label = tk.Label(root, text="What's the measurement in cm?")
+# User input (centimeters)
+entry = tk.Entry(window)
+entry.config(font=("Arial", 50))
+entry.place(width=300,y=50)
 
-# Input field
-entry = tk.Entry(root)
+# User input (tank selection)
 
-# Pass the function to Tkinter.
-# Tkinter calls it when the user clicks the button.
-button = tk.Button(
-    root,
-    text="Convert",
-    width=25,
-    command=show
-)
+# Variable
+tank_variable = tk.IntVar()
 
-# Position the widgets in the window
-label.pack(padx=20, pady=20)
-entry.pack()
-button.pack()
+for index in range(len(tanks)):
+    radiobutton = tk.Radiobutton(
+        window,
+        text=tanks[index],
+        variable=tank_variable,
+        value=index
+    )
+    radiobutton.pack()
 
-# Start the event loop
-root.mainloop()
+window.mainloop()
