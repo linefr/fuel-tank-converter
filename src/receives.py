@@ -7,7 +7,7 @@ def receive_fuels(fuel_name, fuels):
     """
 
     # Using the pathlib library to find the database inside the data folder
-    private_directory = Path(__file__).parent.parent.parent / "data"
+    private_directory = Path(__file__).parent.parent / "data"
 
     databases = list(private_directory.glob("*.db"))
     print(databases)
