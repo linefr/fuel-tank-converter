@@ -210,6 +210,7 @@ class FuelConverterApp:
         button.config(text="Convert", command=self.submit)
         button.grid(row=10)
 
+
     def submit(self):
         fuels = self.get_fuels()
 
@@ -217,8 +218,10 @@ class FuelConverterApp:
             self.show_error()
             return
 
-        self.convert_fuels(fuels)
+        fuels = self.convert_fuels(fuels)
+        print(fuels)
         self.show_results(fuels)
+
 
     def get_fuels(self):
         # Variables
@@ -257,26 +260,51 @@ class FuelConverterApp:
         }
         return self.fuels
     def validate_fuels(self, fuels):
-        for fuel_name, details_fuels in self.fuels.items():
-        
-                cm = details_fuels['cm']
-        
-                if cm.isdigit():
-                    details_fuels["litres"] = receive_fuels(fuel_name, fuels)
-                # Clear the error message
-                else:
-                    self.show_error()
-                    break
+        for details in fuels.values():
+            # Trabalhar no sentido inverso, tentar pelo nao
+            if not details["cm"].isdigit():
+                return False
+
+        return True
 
     def convert_fuels(self, fuels):
-        pass
+        for fuel_name, details_fuels in fuels.items():
+            details_fuels["litres"] = receive_fuels(fuel_name, fuels)
+        return fuels
 
     def show_error(self):
-        pass
+        # New window no references with main window
+        error_window = tk.Toplevel(self.root)
+        error_window.title("ERROR")
+        error_window.geometry("300x300")
+        label_error = tk.Label(
+            error_window,
+            text = "Please enter valid number.",
+            fg='red'
+            )
+        label_error.pack(pady=25)
+
+        # Closing error mensagem 
+        button = tk.Button(
+            error_window,
+            text="Close",
+            command=error_window.destroy
+        )
+        button.pack()
 
     def show_results(self, fuels):
-        pass
+        results_window = tk.Toplevel(self.root)
+        results_window.title("Results")
+        results_window.geometry("200x300")
+        label = tk.Label(
+            results_window,
+            text=fuels
+        )
+        label.grid()
+
 
 root = tk.Tk()
 app = FuelConverterApp(root)
+
 root.mainloop()
+
