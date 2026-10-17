@@ -2,19 +2,15 @@
 
 A simple Python project that converts tank measurements from centimetres to litres using calibration data stored in SQLite.
 
-## Project Status
-
-🚧 Work in progress — Week 4
-
-Currently learning Tkinter and building the graphical user interface.
-
-There has been a setback during Week 4. I realized that I need to better understand Tkinter before continuing with the GUI implementation, so I am taking some time to learn how the library works through small experiments in a separate sandbox.
-
-**Expected result:** A graphical application that:
-
-- allows the user to select a tank
-- accepts a measurement in centimetres
-- converts centimetres to litres
-- displays validation messages
-- stores measurements in SQLite
-- allows the user to view the measurement history
+🚧 Work in Progress — Final Development Stage
+Currently developing the graphical user interface using Python and Tkinter.
+The project has progressed beyond the initial development schedule. The main focus now is to complete a simple, functional version by the end of October 2026, prioritizing core features over visual complexity.
+Expected functionality:
+- Allow users to select a fuel tank.
+- Accept measurements in centimetres.
+- Convert centimetres to litres.
+- Display validation and error messages.
+- Store measurements in SQLite.
+- Allow users to view measurement history.
+📅 Expected delivery: October 2026
+The priority is to deliver a working application with a straightforward interface. Additional features and visual improvements will be considered in future updates.
