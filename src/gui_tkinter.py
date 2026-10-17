@@ -144,7 +144,7 @@ class FuelConverterApp:
     def __init__(self, root):
         self.root = root
         self.root.title("Fuel Tank Converter")
-        self.root.geometry("400x400")
+        self.root.geometry("350x350")
         self.create_fuel_widgets()
 
     def create_fuel_widgets(self):
@@ -205,7 +205,8 @@ class FuelConverterApp:
         self.ethanol_entry.grid(
             row=4, column=1, padx=10, pady=8
         )
-
+        # Inicialize variable text
+        self.text_var = tk.StringVar(value="Initial Text")
         button = tk.Button(self.root)
         button.config(text="Convert", command=self.submit)
         button.grid(row=10)
@@ -219,9 +220,21 @@ class FuelConverterApp:
             return
 
         fuels = self.convert_fuels(fuels)
-        print(fuels)
+        # Updat the value inside StringVar
+        self.text_var.set(self.print_text(fuels))
         self.show_results(fuels)
 
+
+    def print_text(self, fuels):
+        text = ''
+        for fuel, details in fuels.items():
+            text += f'{f'{fuel}:':^24}\n'
+            for properties, properties_values in details.items():
+                text += f'{properties + " -":<12}{str(properties_values):>12}\n'
+            text += "-" * 22 + "\n" 
+            
+        return text
+            
 
     def get_fuels(self):
         # Variables
@@ -276,7 +289,7 @@ class FuelConverterApp:
         # New window no references with main window
         error_window = tk.Toplevel(self.root)
         error_window.title("ERROR")
-        error_window.geometry("300x300")
+        error_window.geometry("200x100")
         label_error = tk.Label(
             error_window,
             text = "Please enter valid number.",
@@ -295,12 +308,19 @@ class FuelConverterApp:
     def show_results(self, fuels):
         results_window = tk.Toplevel(self.root)
         results_window.title("Results")
-        results_window.geometry("200x300")
-        label = tk.Label(
-            results_window,
-            text=fuels
-        )
-        label.grid()
+        results_window.geometry("210x420")
+        text_widget = tk.Text(
+                    results_window,
+                    width=35,
+                    height=25,
+                    font=("Menlo", 12),
+                    wrap="none"
+                )
+        text_widget.insert("1.0", self.text_var.get())
+        text_widget.config(state="disabled")
+        text_widget.pack(padx=10, pady=10)
+
+
 
 
 root = tk.Tk()
