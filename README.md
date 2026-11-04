@@ -1,16 +1,55 @@
 # CM to Litres Converter
 
-A simple Python project that converts tank measurements from centimetres to litres using calibration data stored in SQLite.
+A Python application that converts fuel tank measurements from centimetres to litres using calibration data extracted from PDF files and stored in SQLite.
 
-🚧 Work in Progress — Final Development Stage
-Currently developing the graphical user interface using Python and Tkinter.
-The project has progressed beyond the initial development schedule. The main focus now is to complete a simple, functional version by the end of October 2026, prioritizing core features over visual complexity.
-Expected functionality:
-- Allow users to select a fuel tank.
-- Accept measurements in centimetres.
-- Convert centimetres to litres.
+## Project Status
+
+✅ **Development Complete**
+
+The project has reached its initial development goals. It provides a graphical user interface built with Python and Tkinter for converting fuel tank measurements.
+
+### Features
+
+- Select a fuel tank.
+- Enter measurements in centimetres.
+- Convert centimetres to litres using calibration data.
 - Display validation and error messages.
-- Store measurements in SQLite.
-- Allow users to view measurement history.
-📅 Expected delivery: October 2026
-The priority is to deliver a working application with a straightforward interface. Additional features and visual improvements will be considered in future updates.
+- Store calibration data in SQLite.
+
+## Installation and Setup
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/linefr/fuel-tank-converter.git
+cd fuel-tank-converter
+```
+
+### 2. Set up a virtual environment
+
+Create and activate a Python virtual environment.
+
+### 3. Install dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### 4. Create the PDF directory
+
+From the project root, create the following directory:
+
+```bash
+mkdir -p data/private
+```
+
+### 5. Add calibration PDF files
+
+Place the corresponding fuel tank calibration PDF files inside `data/private/`.
+
+These files are required to extract the calibration measurements used by the application.
+
+## Notes
+
+- The application requires valid fuel tank calibration PDF files.
+- The `.venv/` and `data/private/` directories should be excluded from version control using `.gitignore`.

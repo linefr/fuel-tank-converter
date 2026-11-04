@@ -11,6 +11,12 @@ data/private/
 
 # Configuration files and secrets
 .env
+Venv/
 
 **/__pycache__/
 *.pyc
+
+# Pyinstaller
+build/
+dist/
+*.spec
